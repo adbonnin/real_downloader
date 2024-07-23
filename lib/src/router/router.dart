@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:real_downloader/src/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:real_downloader/src/features/downloads/presentation/downloads_screen.dart';
+import 'package:real_downloader/src/features/settings/presentation/settings_screen.dart';
 import 'package:real_downloader/src/router/shell_scaffold.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -47,6 +48,14 @@ class AppRouter {
               GoRoute(
                 path: '/downloads',
                 builder: (_, __) => const DownloadsScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/settings',
+                builder: (_, __) => const SettingsScreen(),
               ),
             ],
           ),

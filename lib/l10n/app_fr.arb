@@ -1,0 +1,15 @@
+{
+  "settings": "Paramètres",
+  "downloads": "Téléchargements",
+  "dashboard": "Tableau de bord",
+  "youAreDisconnected": "Vous êtes déconnecté",
+  "modify": "Modifier",
+  "account": "Compte",
+  "cancel": "Annuler",
+  "signIn": "S'authentifier",
+  "apiPrivateToken": "Jeton d'API privé",
+  "apiPrivateTokenInfo": "Vous pouvez copier votre jeton privé depuis [ici]({link})",
+  "error_isNotBlank": "The value must not be blank",
+  "error_realDebrid_badToken": "Le token est invalide",
+  "error_realDebrid_apiException": "Une erreur est survenue"
+}

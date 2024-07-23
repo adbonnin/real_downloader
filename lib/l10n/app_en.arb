@@ -1,0 +1,22 @@
+{
+  "settings": "Settings",
+  "downloads": "Downloads",
+  "dashboard": "Dashboard",
+  "youAreDisconnected": "You are disconnected",
+  "modify": "Modify",
+  "account": "Account",
+  "cancel": "Cancel",
+  "signIn": "Sign in",
+  "apiPrivateToken": "API Private Token",
+  "apiPrivateTokenInfo": "You can copy your private token [here]({link})",
+  "@apiPrivateTokenInfo": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "error_isNotBlank": "The value must not be blank",
+  "error_realDebrid_badToken": "The token is invalid",
+  "error_realDebrid_apiException": "An error occurred"
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import 'package:go_router/go_router.dart';
+import 'package:real_downloader/src/l10n/localizations.dart';
 
 class ShellScaffold extends StatelessWidget {
   const ShellScaffold({
@@ -13,16 +14,21 @@ class ShellScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdaptiveScaffold(
-      destinations: const [
+      destinations: [
         NavigationDestination(
-          icon: Icon(Icons.dashboard_outlined),
-          selectedIcon: Icon(Icons.dashboard),
-          label: 'Dashboard',
+          icon: const Icon(Icons.dashboard_outlined),
+          selectedIcon: const Icon(Icons.dashboard),
+          label: context.loc.dashboard,
         ),
         NavigationDestination(
-          icon: Icon(Icons.download_outlined),
-          selectedIcon: Icon(Icons.download),
-          label: 'Downloads',
+          icon: const Icon(Icons.download_outlined),
+          selectedIcon: const Icon(Icons.download),
+          label: context.loc.downloads,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.settings_outlined),
+          selectedIcon: const Icon(Icons.settings),
+          label: context.loc.settings,
         ),
       ],
       selectedIndex: navigationShell.currentIndex,
