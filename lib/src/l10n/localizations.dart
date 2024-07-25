@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:real_downloader/src/features/account/application/account_providers.dart';
 import 'package:realdebrid_api/realdebrid_api.dart';
 
 extension BuildContextLocalizationExtension on BuildContext {
@@ -15,6 +16,10 @@ extension AppLocalizationsExtension on AppLocalizations {
         return error_realDebrid_badToken;
       }
 
+      return error_realDebrid_apiException;
+    }
+
+    if (error is RealDebridAuthenticationException) {
       return error_realDebrid_apiException;
     }
 

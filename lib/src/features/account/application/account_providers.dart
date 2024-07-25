@@ -12,11 +12,11 @@ final tokenPreferenceProvider = createPref<String?>(
 );
 
 @Riverpod(keepAlive: true)
-RealDebridApi? realDebridApi(RealDebridApiRef ref) {
+RealDebridApi realDebridApi(RealDebridApiRef ref) {
   final apiToken = ref.watch(tokenPreferenceProvider);
 
   if (apiToken == null) {
-    return null;
+    throw RealDebridAuthenticationException();
   }
 
   final client = ApiClient.basicAuthentication(apiToken: apiToken);
@@ -26,10 +26,7 @@ RealDebridApi? realDebridApi(RealDebridApiRef ref) {
 @Riverpod(keepAlive: true)
 Future<User?> user(UserRef ref) async {
   final api = ref.watch(realDebridApiProvider);
-
-  if (api == null) {
-    return null;
-  }
-
   return api.user.getUser();
 }
+
+class RealDebridAuthenticationException implements Exception {}

@@ -8,3 +8,4 @@ targets:
         generate_for:
           - "**/application/**.dart"
           - "lib/src/router/router.dart"
+          - "lib/src/utils/shared_preferences.dart"

@@ -18,5 +18,6 @@
   },
   "error_isNotBlank": "The value must not be blank",
   "error_realDebrid_badToken": "The token is invalid",
+  "error_realDebrid_authenticationException": "API not available",
   "error_realDebrid_apiException": "An error occurred"
 }

@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:real_downloader/src/l10n/localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:real_downloader/src/features/downloads/application/torrent_providers.dart';
+import 'package:real_downloader/src/features/downloads/presentation/download_list_view.dart';
 import 'package:real_downloader/src/router/base_scaffold.dart';
+import 'package:real_downloader/src/widgets/async_value_widget.dart';
 
-class DownloadsScreen extends StatelessWidget {
+class DownloadsScreen extends ConsumerWidget {
   const DownloadsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final asyncTorrents = ref.watch(torrentsNotifierProvider);
+
     return BaseScaffold(
-      body: Center(
-        child: Text(context.loc.downloads),
+      body: AsyncValueWidget(
+        value: asyncTorrents,
+        data: (_, torrents) => DownloadListView(
+          torrents: torrents,
+        ),
       ),
     );
   }

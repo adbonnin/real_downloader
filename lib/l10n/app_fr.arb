@@ -11,5 +11,6 @@
   "apiPrivateTokenInfo": "Vous pouvez copier votre jeton privé depuis [ici]({link})",
   "error_isNotBlank": "The value must not be blank",
   "error_realDebrid_badToken": "Le token est invalide",
+  "error_realDebrid_authenticationException": "API indisponible",
   "error_realDebrid_apiException": "Une erreur est survenue"
 }
