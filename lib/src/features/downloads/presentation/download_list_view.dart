@@ -1,7 +1,6 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:real_downloader/src/features/downloads/domain/download.dart';
-import 'package:real_downloader/src/features/downloads/presentation/download_card.dart';
-import 'package:real_downloader/src/style.dart';
+import 'package:real_downloader/src/features/downloads/presentation/download_list_tile.dart';
 import 'package:realdebrid_api/realdebrid_api.dart';
 
 class DownloadListView extends StatelessWidget {
@@ -16,7 +15,7 @@ class DownloadListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       itemBuilder: _buildItem,
-      separatorBuilder: (_, __) => Gaps.p8,
+      separatorBuilder: (_, __) => const Divider(),
       itemCount: torrents.length,
     );
   }
@@ -24,8 +23,10 @@ class DownloadListView extends StatelessWidget {
   Widget _buildItem(BuildContext context, int index) {
     final torrent = torrents[index];
 
-    return DownloadCard(
-      download: Download(filename: torrent.filename),
+    return DownloadListTile(
+      download: Download.torrent(
+        torrent: torrent,
+      ),
     );
   }
 }

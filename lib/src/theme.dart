@@ -5,7 +5,11 @@ class AppTheme {
 
   ThemeData build() {
     const colorTheme = AppColorTheme.light();
-    final colorScheme = ColorScheme.fromSeed(seedColor: colorTheme.primary);
+
+    final colorScheme = ColorScheme.fromSeed(
+      seedColor: colorTheme.primary,
+      surface: colorTheme.background,
+    );
 
     final theme = ThemeData(
       useMaterial3: true,

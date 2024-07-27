@@ -25,4 +25,21 @@ extension AppLocalizationsExtension on AppLocalizations {
 
     return error.toString();
   }
+
+  String translateTorrentStatus(TorrentStatus status) {
+    return switch (status) {
+      TorrentStatus.magnetError => torrentStatus_magnetError,
+      TorrentStatus.magnetConversion => torrentStatus_magnetConversion,
+      TorrentStatus.waitingFilesSelection => torrentStatus_waitingFilesSelection,
+      TorrentStatus.queued => torrentStatus_queued,
+      TorrentStatus.downloading => torrentStatus_downloading,
+      TorrentStatus.downloaded => torrentStatus_downloaded,
+      TorrentStatus.error => torrentStatus_error,
+      TorrentStatus.virus => torrentStatus_virus,
+      TorrentStatus.compressing => torrentStatus_compressing,
+      TorrentStatus.uploading => torrentStatus_uploading,
+      TorrentStatus.dead => torrentStatus_dead,
+      TorrentStatus.$unknown => torrentStatus_$unknown,
+    };
+  }
 }

@@ -12,6 +12,15 @@ class Insets {
   static const double p22 = 22;
 }
 
+class IconSizes {
+  const IconSizes._();
+
+  static const double p20 = 20;
+  static const double p24 = 24;
+  static const double p40 = 40;
+  static const double p48 = 48;
+}
+
 class Gaps {
   const Gaps._();
 

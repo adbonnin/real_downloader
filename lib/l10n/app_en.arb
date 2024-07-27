@@ -16,6 +16,45 @@
       }
     }
   },
+  "downloading_text":"{bytes} of {totalBytes} ({progress}%)",
+  "@downloading_text": {
+    "placeholders": {
+      "bytes": {
+        "type": "String"
+      },
+      "totalBytes": {
+        "type": "String"
+      },
+      "progress": {
+        "type": "double",
+        "format": "decimalPattern"
+      }
+    }
+  },
+  "downloaded_text":"{bytes} ({progress}%)",
+  "@downloaded_text": {
+    "placeholders": {
+      "bytes": {
+        "type": "String"
+      },
+      "progress": {
+        "type": "double",
+        "format": "decimalPattern"
+      }
+    }
+  },
+  "torrentStatus_magnetError": "Magnet Error",
+  "torrentStatus_magnetConversion": "Magnet conversion",
+  "torrentStatus_waitingFilesSelection": "Waiting for files selection",
+  "torrentStatus_queued": "Queued",
+  "torrentStatus_downloading": "Downloading",
+  "torrentStatus_downloaded": "Completed",
+  "torrentStatus_error": "Error",
+  "torrentStatus_virus": "Virus detected",
+  "torrentStatus_compressing": "Compressing before availability",
+  "torrentStatus_uploading": "Uploading before availability",
+  "torrentStatus_dead": "Torrent mort",
+  "torrentStatus_$unknown": "Unknown status",
   "error_isNotBlank": "The value must not be blank",
   "error_realDebrid_badToken": "The token is invalid",
   "error_realDebrid_authenticationException": "API not available",
