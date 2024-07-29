@@ -1,21 +1,36 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
-class AppTheme {
-  const AppTheme();
+import 'package:flutter/material.dart';
+import 'package:real_downloader/src/style.dart';
+
+class AppTheme extends ThemeExtension<AppTheme> {
+  const AppTheme({
+    required this.primaryColor,
+    required this.backgroundColor,
+    required this.cardTheme,
+  });
+
+  const AppTheme.light({
+    this.primaryColor = Colors.blueAccent,
+    this.backgroundColor = Colors.white,
+    this.cardTheme = const AppCardTheme.ligth(),
+  });
+
+  final Color primaryColor;
+  final Color backgroundColor;
+  final AppCardTheme cardTheme;
 
   ThemeData build() {
-    const colorTheme = AppColorTheme.light();
-
     final colorScheme = ColorScheme.fromSeed(
-      seedColor: colorTheme.primary,
-      surface: colorTheme.background,
+      seedColor: primaryColor,
+      surface: backgroundColor,
     );
 
     final theme = ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
-      extensions: const [
-        colorTheme,
+      extensions: [
+        this,
       ],
     );
 
@@ -23,51 +38,92 @@ class AppTheme {
       inputDecorationTheme: const InputDecorationTheme(
         border: OutlineInputBorder(),
       ),
-      scaffoldBackgroundColor: colorTheme.background,
+      scaffoldBackgroundColor: backgroundColor,
       cardTheme: CardTheme(
-        color: colorTheme.background,
+        color: cardTheme.backgroundColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Insets.p8),
+          side: BorderSide(
+            color: cardTheme.borderColor,
+            width: cardTheme.borderWidth,
+          ),
+        ),
       ),
       dialogTheme: DialogTheme(
-        backgroundColor: colorTheme.background,
+        backgroundColor: backgroundColor,
       ),
+    );
+  }
+
+  @override
+  AppTheme copyWith({
+    Color? primaryColor,
+    Color? backgroundColor,
+    AppCardTheme? cardTheme,
+  }) {
+    return AppTheme(
+      primaryColor: primaryColor ?? this.primaryColor,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      cardTheme: cardTheme ?? this.cardTheme,
+    );
+  }
+
+  @override
+  AppTheme lerp(AppTheme other, double t) {
+    return AppTheme(
+      primaryColor: Color.lerp(primaryColor, other.primaryColor, t)!,
+      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
+      cardTheme: cardTheme.lerp(other.cardTheme, t),
     );
   }
 }
 
-class AppColorTheme extends ThemeExtension<AppColorTheme> {
-  const AppColorTheme({
-    required this.primary,
-    required this.background,
+class AppCardTheme extends ThemeExtension<AppCardTheme> {
+  const AppCardTheme({
+    required this.borderColor,
+    required this.borderWidth,
+    required this.borderRadius,
+    required this.backgroundColor,
   });
 
-  const AppColorTheme.light({
-    this.primary = Colors.blueAccent,
-    this.background = Colors.white,
+  const AppCardTheme.ligth({
+    this.borderColor = Colors.black12,
+    this.borderWidth = 1,
+    this.borderRadius = Insets.p8,
+    this.backgroundColor = Colors.white,
   });
 
-  final Color primary;
-  final Color background;
+  final Color borderColor;
+  final double borderWidth;
+  final double borderRadius;
+  final Color backgroundColor;
 
   @override
-  AppColorTheme copyWith({
-    Color? primary,
-    Color? background,
+  AppCardTheme copyWith({
+    Color? borderColor,
+    double? borderWidth,
+    double? borderRadius,
+    Color? backgroundColor,
   }) {
-    return AppColorTheme(
-      primary: primary ?? this.primary,
-      background: background ?? this.background,
+    return AppCardTheme(
+      borderColor: borderColor ?? this.borderColor,
+      borderWidth: borderWidth ?? this.borderWidth,
+      borderRadius: borderRadius ?? this.borderRadius,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
     );
   }
 
   @override
-  AppColorTheme lerp(AppColorTheme other, double t) {
-    return AppColorTheme(
-      primary: Color.lerp(primary, other.primary, t)!,
-      background: Color.lerp(background, other.background, t)!,
+  AppCardTheme lerp(AppCardTheme other, double t) {
+    return AppCardTheme(
+      borderColor: Color.lerp(borderColor, other.borderColor, t)!,
+      borderWidth: lerpDouble(borderWidth, other.borderWidth, t)!,
+      borderRadius: lerpDouble(borderRadius, other.borderRadius, t)!,
+      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
     );
   }
 }
 
 extension ThemeDataExtension on ThemeData {
-  AppColorTheme get colorTheme => extension<AppColorTheme>()!;
+  AppTheme get appTheme => extension<AppTheme>()!;
 }

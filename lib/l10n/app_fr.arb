@@ -15,7 +15,7 @@
   "torrentStatus_magnetConversion": "Conversion du lien magnet",
   "torrentStatus_waitingFilesSelection": "En attente de sélection des fichiers",
   "torrentStatus_queued": "En file d'attente",
-  "torrentStatus_downloading": "Téléchargement",
+  "torrentStatus_downloading": "En téléchargement",
   "torrentStatus_downloaded": "Terminé",
   "torrentStatus_error": "En erreur",
   "torrentStatus_virus": "Virus détecté",

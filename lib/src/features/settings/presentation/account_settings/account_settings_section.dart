@@ -6,8 +6,8 @@ import 'package:real_downloader/src/l10n/localizations.dart';
 import 'package:real_downloader/src/style.dart';
 import 'package:real_downloader/src/widgets/settings_section.dart';
 
-class AccountSettingsCard extends ConsumerWidget {
-  const AccountSettingsCard({super.key});
+class AccountSettingsSection extends ConsumerWidget {
+  const AccountSettingsSection({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

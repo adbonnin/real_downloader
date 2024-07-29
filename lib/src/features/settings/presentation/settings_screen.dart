@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:real_downloader/src/features/settings/presentation/account_settings/account_settings_card.dart';
+import 'package:real_downloader/src/features/settings/presentation/account_settings/account_settings_section.dart';
 import 'package:real_downloader/src/router/base_scaffold.dart';
 import 'package:real_downloader/src/style.dart';
 
@@ -19,7 +19,7 @@ class SettingsScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Gaps.p22,
-                AccountSettingsCard(),
+                AccountSettingsSection(),
               ],
             ),
           ),

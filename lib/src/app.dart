@@ -10,7 +10,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.read(routerProvider);
-    const theme = AppTheme();
+    const theme = AppTheme.light();
 
     return MaterialApp.router(
       title: 'Real Downloader',

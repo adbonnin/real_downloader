@@ -25,7 +25,6 @@ class SettingsSection extends StatelessWidget {
           const SizedBox(height: 10),
         ],
         Card(
-          elevation: 3,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: Insets.p18, vertical: Insets.p12),
             child: child,
