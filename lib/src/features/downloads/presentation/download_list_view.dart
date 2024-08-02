@@ -7,15 +7,17 @@ class DownloadListView extends StatelessWidget {
   const DownloadListView({
     super.key,
     required this.torrents,
+    required this.onDeletePressed,
   });
 
   final List<TorrentItem> torrents;
+  final void Function(TorrentItem) onDeletePressed;
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       itemBuilder: _buildItem,
-      separatorBuilder: (_, __) => const Divider(),
+      separatorBuilder: (_, __) => const Divider(height: 2, thickness: 2),
       itemCount: torrents.length,
     );
   }
@@ -24,9 +26,8 @@ class DownloadListView extends StatelessWidget {
     final torrent = torrents[index];
 
     return DownloadListTile(
-      download: Download.torrent(
-        torrent: torrent,
-      ),
+      download: Download.torrent(torrent: torrent),
+      onDeletePressed: () => onDeletePressed(torrent),
     );
   }
 }

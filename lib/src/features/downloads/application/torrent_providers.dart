@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:real_downloader/src/features/account/application/account_providers.dart';
-import 'package:real_downloader/src/features/downloads/application/get_next_torrents_use_case.dart';
+import 'package:real_downloader/src/features/downloads/application/use_cases/get_next_torrents_use_case.dart';
 import 'package:real_downloader/src/utils/iterable.dart';
 import 'package:realdebrid_api/realdebrid_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
