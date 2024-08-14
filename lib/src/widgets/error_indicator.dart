@@ -17,17 +17,18 @@ class ErrorIndicator extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Row(
-      mainAxisSize: MainAxisSize.min,
       children: [
         IconTheme(
           data: IconThemeData(color: theme.colorScheme.error),
           child: icon ?? const Icon(Icons.error),
         ),
         Gaps.p8,
-        Text(
-          context.loc.translateError(error),
-          style: TextStyle(color: theme.colorScheme.error),
-        )
+        Flexible(
+          child: Text(
+            context.loc.translateError(error),
+            style: TextStyle(color: theme.colorScheme.error),
+          ),
+        ),
       ],
     );
   }
