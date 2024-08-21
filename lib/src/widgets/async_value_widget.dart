@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:real_downloader/src/widgets/error_indicator.dart';
+import 'package:real_downloader/src/widgets/info_indicator.dart';
 
 class AsyncValueWidget<T> extends StatelessWidget {
   const AsyncValueWidget({
@@ -21,8 +21,10 @@ class AsyncValueWidget<T> extends StatelessWidget {
     return switch (value) {
       AsyncData(:final value) => data(context, value),
       AsyncError(:final error, :final stackTrace) => this.error?.call(context, error, stackTrace) ?? //
-          ErrorIndicator(
-            error: error,
+          Center(
+            child: ErrorIndicator(
+              error: error,
+            ),
           ),
       _ => loading?.call(context) ?? //
           const Center(

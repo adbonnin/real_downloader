@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:real_downloader/src/style.dart';
-import 'package:real_downloader/src/widgets/error_indicator.dart';
+import 'package:real_downloader/src/widgets/info_indicator.dart';
 
 class LoadingContainer extends StatefulWidget {
   const LoadingContainer({

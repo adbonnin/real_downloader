@@ -64,8 +64,8 @@ class TorrentDownload implements Download {
     final progress = torrent.progress;
 
     return switch (torrent.status) {
-      TorrentStatus.downloading => loc.downloading_text(bytesText, totalBytesText, progress),
-      TorrentStatus.downloaded => loc.downloaded_text(totalBytesText, progress),
+      TorrentStatus.downloading => loc.downloads_downloading(bytesText, totalBytesText, progress),
+      TorrentStatus.downloaded => loc.downloads_downloaded(totalBytesText, progress),
       _ => '',
     };
   }

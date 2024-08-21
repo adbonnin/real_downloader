@@ -16,8 +16,9 @@
       }
     }
   },
-  "downloading_text":"{bytes} of {totalBytes} ({progress}%)",
-  "@downloading_text": {
+  "downloads_empty": "Aucun téléchargement",
+  "downloads_downloading":"{bytes} of {totalBytes} ({progress}%)",
+  "@downloads_downloading": {
     "placeholders": {
       "bytes": {
         "type": "String"
@@ -31,8 +32,8 @@
       }
     }
   },
-  "downloaded_text":"{bytes} ({progress}%)",
-  "@downloaded_text": {
+  "downloads_downloaded":"{bytes} ({progress}%)",
+  "@downloads_downloaded": {
     "placeholders": {
       "bytes": {
         "type": "String"

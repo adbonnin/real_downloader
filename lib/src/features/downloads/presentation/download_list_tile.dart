@@ -37,28 +37,26 @@ class _DownloadListTileState extends State<DownloadListTile> {
             ),
             overflow: TextOverflow.ellipsis,
           ),
-          subtitle: Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        widget.download.informationText(context.loc),
-                        overflow: TextOverflow.ellipsis,
-                      ),
+          subtitle: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      widget.download.informationText(context.loc),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    Text(widget.download.statusText(context.loc)),
-                  ],
-                ),
-                Gaps.p8,
-                LinearProgressIndicator(
-                  value: widget.download.progress,
-                ),
-              ],
-            ),
+                  ),
+                  Text(widget.download.statusText(context.loc)),
+                ],
+              ),
+              Gaps.p8,
+              LinearProgressIndicator(
+                value: widget.download.progress,
+              ),
+            ],
           ),
           trailing: !_isHover
               ? null

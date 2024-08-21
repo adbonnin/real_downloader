@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:real_downloader/src/utils/real_debrid.dart';
 import 'package:real_downloader/src/utils/shared_preferences.dart';
 import 'package:realdebrid_api/realdebrid_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -19,8 +20,8 @@ RealDebridApi realDebridApi(RealDebridApiRef ref) {
     throw RealDebridAuthenticationException();
   }
 
-  final client = ApiClient.basicAuthentication(apiToken: apiToken);
-  return RealDebridApi(client);
+  final client = RealDebridApiClient.basicAuthentication(apiToken: apiToken);
+  return RealDebridApi(CachedExceptionApiClient(client));
 }
 
 @Riverpod(keepAlive: true)

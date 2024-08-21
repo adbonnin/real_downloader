@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:real_downloader/src/features/account/application/account_providers.dart';
 import 'package:real_downloader/src/features/downloads/application/use_cases/get_next_torrents_use_case.dart';
 import 'package:real_downloader/src/utils/iterable.dart';
@@ -11,19 +10,18 @@ part 'torrent_providers.g.dart';
 
 @Riverpod(keepAlive: true)
 class TorrentsNotifier extends _$TorrentsNotifier {
-  late final RealDebridApi api;
-
   @override
   Future<List<TorrentItem>> build() async {
-    api = ref.watch(realDebridApiProvider);
+    final api = ref.watch(realDebridApiProvider);
 
     final updateTorrentSubscription = Timer.periodic(const Duration(seconds: 10), _handleUpdateTorrents);
     ref.onDispose(updateTorrentSubscription.cancel);
 
-    return getNextTorrents();
+    return GetNextTorrentsUseCase(api)();
   }
 
   Future<void> _handleUpdateTorrents(Timer timer) async {
+    final api = ref.read(realDebridApiProvider);
     final currentState = state;
 
     if (currentState.isLoading) {
@@ -31,12 +29,7 @@ class TorrentsNotifier extends _$TorrentsNotifier {
     }
 
     state = const AsyncValue<List<TorrentItem>>.loading().copyWithPrevious(currentState);
-    state = await AsyncValue.guard(() => getNextTorrents(currentState.valueOrNull));
-  }
-
-  @visibleForTesting
-  Future<List<TorrentItem>> getNextTorrents([List<TorrentItem>? prevTorrents]) async {
-    return GetNextTorrentsUseCase(api).call(prevTorrents);
+    state = await AsyncValue.guard(() => GetNextTorrentsUseCase(api)(currentState.valueOrNull));
   }
 }
 
@@ -59,7 +52,8 @@ extension TorrentsApiExtension on TorrentsApi {
         );
       } //
       catch (e) {
-        return result;
+        // return result;
+        rethrow;
       }
 
       for (final torrent in torrents) {

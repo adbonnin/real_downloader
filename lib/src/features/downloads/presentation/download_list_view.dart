@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:real_downloader/src/features/downloads/domain/download.dart';
 import 'package:real_downloader/src/features/downloads/presentation/download_list_tile.dart';
+import 'package:real_downloader/src/l10n/localizations.dart';
+import 'package:real_downloader/src/widgets/info_indicator.dart';
 import 'package:realdebrid_api/realdebrid_api.dart';
 
 class DownloadListView extends StatelessWidget {
@@ -15,6 +17,14 @@ class DownloadListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (torrents.isEmpty) {
+      return Center(
+        child: InfoIndicator(
+          child: Text(context.loc.downloads_empty),
+        ),
+      );
+    }
+
     return ListView.separated(
       itemBuilder: _buildItem,
       separatorBuilder: (_, __) => const Divider(height: 2, thickness: 2),
