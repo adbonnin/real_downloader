@@ -90,7 +90,7 @@ class _AccountSettingsDialogState extends ConsumerState<AccountSettingsDialog> {
     }
 
     final apiToken = form.value();
-    final client = RealDebridApiClient.basicAuthentication(apiToken: apiToken);
+    final client = BaseApiClient.basicAuthentication(apiToken: apiToken);
     final api = RealDebridApi(client);
 
     try {

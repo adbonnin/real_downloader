@@ -20,7 +20,7 @@ RealDebridApi realDebridApi(RealDebridApiRef ref) {
     throw RealDebridAuthenticationException();
   }
 
-  final client = RealDebridApiClient.basicAuthentication(apiToken: apiToken);
+  final client = BaseApiClient.basicAuthentication(apiToken: apiToken);
   return RealDebridApi(CachedExceptionApiClient(client));
 }
 
