@@ -14,6 +14,7 @@ class ShellScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdaptiveScaffold(
+      internalAnimations: false,
       destinations: [
         NavigationDestination(
           icon: const Icon(Icons.dashboard_outlined),
