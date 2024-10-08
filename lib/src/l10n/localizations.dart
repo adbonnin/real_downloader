@@ -19,7 +19,7 @@ extension AppLocalizationsExtension on AppLocalizations {
       return error_realDebrid_apiException;
     }
 
-    if (error is RealDebridAuthenticationException) {
+    if (error is ApiException) {
       return error_realDebrid_apiException;
     }
 
