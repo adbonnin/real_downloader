@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,41 +8,47 @@ SharedPreferences prefs(PrefsRef ref) {
   throw UnimplementedError();
 }
 
-StateNotifierProvider<SharedPreferenceNotifier<T>, T> createPref<T>({
+NotifierProvider<PrefNotifier<T>, T> createPrefProvider<T>({
   required String key,
   required T defaultValue,
 }) {
-  return StateNotifierProvider(
-    (ref) => SharedPreferenceNotifier(
-      prefs: ref.watch(prefsProvider),
+  return NotifierProvider(
+    () => PrefNotifier(
       key: key,
       defaultValue: defaultValue,
     ),
   );
 }
 
-class SharedPreferenceNotifier<T> extends StateNotifier<T> {
-  SharedPreferenceNotifier({
-    required this.prefs,
+class PrefNotifier<T> extends Notifier<T> {
+  PrefNotifier({
     required this.key,
-    required T defaultValue,
-  }) : super(prefs.getOrDefault(key, defaultValue));
+    required this.defaultValue,
+  });
 
-  final SharedPreferences prefs;
   final String key;
+  final T defaultValue;
+
+  late SharedPreferences _prefs;
+
+  @override
+  T build() {
+    _prefs = ref.watch(prefsProvider);
+    return _prefs.getOrDefault(key, defaultValue);
+  }
 
   Future<void> update(T value) async {
     switch (value) {
       case bool _:
-        prefs.setBool(key, value);
+        await _prefs.setBool(key, value);
       case int _:
-        prefs.setInt(key, value);
+        await _prefs.setInt(key, value);
       case double _:
-        prefs.setDouble(key, value);
+        await _prefs.setDouble(key, value);
       case String _:
-        prefs.setString(key, value);
+        await _prefs.setString(key, value);
       case List<String> _:
-        prefs.setStringList(key, value);
+        await _prefs.setStringList(key, value);
     }
 
     state = value;
