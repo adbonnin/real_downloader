@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:real_downloader/src/features/downloads/domain/download.dart';
 import 'package:real_downloader/src/features/downloads/presentation/download_list_tile.dart';
 import 'package:real_downloader/src/l10n/localizations.dart';
+import 'package:real_downloader/src/style.dart';
 import 'package:real_downloader/src/widgets/info_indicator.dart';
 import 'package:realdebrid_api/realdebrid_api.dart';
 
@@ -27,7 +28,7 @@ class DownloadListView extends StatelessWidget {
 
     return ListView.separated(
       itemBuilder: _buildItem,
-      separatorBuilder: (_, __) => const Divider(height: 2, thickness: 2),
+      separatorBuilder: (_, __) => Gaps.p2,
       itemCount: torrents.length,
     );
   }
@@ -37,6 +38,7 @@ class DownloadListView extends StatelessWidget {
 
     return DownloadListTile(
       download: Download.torrent(torrent: torrent),
+      onTap: () {},
       onDeletePressed: () => onDeletePressed(torrent),
     );
   }

@@ -18,7 +18,7 @@ class SettingsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Gaps.p22,
+                Gaps.p24,
                 AccountSettingsSection(),
               ],
             ),
