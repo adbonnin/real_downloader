@@ -1,6 +1,7 @@
 import 'package:real_downloader/src/utils/shared_preferences.dart';
 import 'package:realdebrid_api/realdebrid_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:http/http.dart' as http;
 
 part 'account_providers.g.dart';
 
@@ -11,6 +12,8 @@ final tokenPreferenceProvider = createPrefProvider<String?>(
 
 @Riverpod(keepAlive: true)
 class ApiClientNotifier extends _$ApiClientNotifier {
+  late http.Client _httpClient;
+
   @override
   ApiClient build() {
     final apiToken = ref.watch(tokenPreferenceProvider);
@@ -19,8 +22,12 @@ class ApiClientNotifier extends _$ApiClientNotifier {
       throw EmptyTokenException();
     }
 
+    _httpClient = http.Client();
+    ref.onDispose(_httpClient.close);
+
     final client = BaseApiClient.basicAuthentication(
       apiToken: apiToken,
+      client: _httpClient
     );
 
     return ProxyApiClient(

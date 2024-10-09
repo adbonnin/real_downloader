@@ -4,17 +4,24 @@ import 'package:real_downloader/src/l10n/localizations.dart';
 import 'package:real_downloader/src/style.dart';
 import 'package:real_downloader/src/widgets/card.dart';
 
-class DownloadListTile extends StatelessWidget {
+class DownloadListTile extends StatefulWidget {
   const DownloadListTile({
     super.key,
     required this.download,
     required this.onTap,
-    required this.onDeletePressed,
+    required this.delete,
   });
 
   final Download download;
   final VoidCallback onTap;
-  final VoidCallback onDeletePressed;
+  final Future<void> Function() delete;
+
+  @override
+  State<DownloadListTile> createState() => _DownloadListTileState();
+}
+
+class _DownloadListTileState extends State<DownloadListTile> {
+  var _deleting = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +29,7 @@ class DownloadListTile extends StatelessWidget {
 
     return OutlinedCard(
       child: InkWell(
-        onTap: onTap,
+        onTap: widget.onTap,
         child: Padding(
           padding: const EdgeInsets.only(bottom: Insets.p8, top: Insets.p4),
           child: ListTile(
@@ -31,7 +38,7 @@ class DownloadListTile extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    download.filename,
+                    widget.download.filename,
                     style: theme.textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -40,7 +47,7 @@ class DownloadListTile extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: onDeletePressed,
+                  onPressed: _deleting ? null : _onDeletePressed,
                   icon: const Icon(Icons.close),
                 ),
               ],
@@ -53,16 +60,16 @@ class DownloadListTile extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        download.informationText(context.loc),
+                        widget.download.informationText(context.loc),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    Text(download.statusText(context.loc)),
+                    Text(widget.download.statusText(context.loc)),
                   ],
                 ),
                 Gaps.p4,
                 LinearProgressIndicator(
-                  value: download.progress,
+                  value: widget.download.progress,
                 ),
               ],
             ),
@@ -70,5 +77,21 @@ class DownloadListTile extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _onDeletePressed() async {
+    if (_deleting) {
+      return;
+    }
+
+    setState(() => _deleting = true);
+    try {
+      await widget.delete();
+    }
+    finally {
+      if (mounted) {
+        setState(() => _deleting = false);
+      }
+    }
   }
 }

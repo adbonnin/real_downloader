@@ -48,6 +48,7 @@ dependencies:
   shared_preferences: ^2.2.3
   realdebrid_api:
     path: ../realdebrid_api
+  http: ^1.2.2
 
 dev_dependencies:
   flutter_test:

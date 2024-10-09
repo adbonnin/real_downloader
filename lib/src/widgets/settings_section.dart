@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:real_downloader/src/style.dart';
+import 'package:real_downloader/src/widgets/card.dart';
 
 class SettingsSection extends StatelessWidget {
   const SettingsSection({
@@ -24,7 +25,7 @@ class SettingsSection extends StatelessWidget {
           ),
           const SizedBox(height: 10),
         ],
-        Card(
+        OutlinedCard(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: Insets.p18, vertical: Insets.p12),
             child: child,

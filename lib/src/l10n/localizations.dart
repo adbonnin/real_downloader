@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:real_downloader/src/features/account/application/account_providers.dart';
 import 'package:realdebrid_api/realdebrid_api.dart';
 
 extension BuildContextLocalizationExtension on BuildContext {

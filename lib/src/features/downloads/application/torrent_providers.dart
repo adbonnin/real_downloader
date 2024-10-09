@@ -10,26 +10,53 @@ part 'torrent_providers.g.dart';
 
 @Riverpod(keepAlive: true)
 class TorrentsNotifier extends _$TorrentsNotifier {
+  late RealDebridApi api;
+
   @override
   Future<List<TorrentItem>> build() async {
-    final api = ref.watch(realDebridApiProvider);
+    api = ref.watch(realDebridApiProvider);
 
-    final updateTorrentSubscription = Timer.periodic(const Duration(seconds: 10), _handleUpdateTorrents);
+    final updateTorrentSubscription = Timer.periodic(const Duration(seconds: 10), (_) => _updateTorrents());
     ref.onDispose(updateTorrentSubscription.cancel);
 
     return GetNextTorrentsUseCase(api)();
   }
 
-  Future<void> _handleUpdateTorrents(Timer timer) async {
-    final api = ref.read(realDebridApiProvider);
-    final currentState = state;
-
-    if (currentState.isLoading) {
+  Future<void> _updateTorrents() async {
+    if (state.isLoading) {
       return;
     }
 
-    state = const AsyncValue<List<TorrentItem>>.loading().copyWithPrevious(currentState);
-    state = await AsyncValue.guard(() => GetNextTorrentsUseCase(api)(currentState.valueOrNull));
+    final loadingState = const AsyncValue<List<TorrentItem>>.loading().copyWithPrevious(
+      state,
+      isRefresh: true,
+    );
+
+    state = loadingState;
+    final nextState = await AsyncValue.guard(() => GetNextTorrentsUseCase(api)(state.valueOrNull));
+
+    if (!identical(state, loadingState)) {
+      return;
+    }
+
+    state = nextState;
+  }
+
+  Future<void> deleteTorrent(TorrentItem torrent) async {
+    await api.torrents.deleteTorrent(id: torrent.id);
+
+    final values = state.valueOrNull;
+
+    if (values != null) {
+      final nextValues = values.where((t) => t.id != torrent.id).toList();
+      final nextState = AsyncData(nextValues);
+
+      state = state.map(
+        data: (d) => nextState,
+        error: (e) => e.copyWithPrevious(nextState),
+        loading: (l) => l.copyWithPrevious(nextState),
+      );
+    }
   }
 }
 

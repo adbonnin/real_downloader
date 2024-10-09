@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:real_downloader/src/theme.dart';
 
 class OutlinedCard extends StatelessWidget {
   const OutlinedCard({
