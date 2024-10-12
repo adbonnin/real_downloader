@@ -16,6 +16,8 @@
       }
     }
   },
+  "directory_watcher_title": "Directory watcher",
+  "directory_watcher_addButton": "Add a new folder",
   "downloads_empty": "Aucun téléchargement",
   "downloads_downloading":"{bytes} of {totalBytes} ({progress}%)",
   "@downloads_downloading": {

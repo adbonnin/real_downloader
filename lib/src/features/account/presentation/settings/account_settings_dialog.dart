@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:real_downloader/src/features/account/application/account_providers.dart';
-import 'package:real_downloader/src/features/settings/presentation/account_settings/account_settings_form.dart';
+import 'package:real_downloader/src/features/account/presentation/settings/account_settings_form.dart';
 import 'package:real_downloader/src/l10n/localizations.dart';
 import 'package:real_downloader/src/style.dart';
 import 'package:real_downloader/src/widgets/loading_overlay.dart';

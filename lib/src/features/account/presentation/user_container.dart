@@ -13,13 +13,14 @@ class UserContainer extends ConsumerWidget {
     final asyncUser = ref.watch(userProvider);
 
     return AsyncValueWidget(
-      value: asyncUser,
+      asyncUser,
       data: (_, user) => user == null //
           ? Text(context.loc.youAreDisconnected)
           : Text(
               user.username,
               style: theme.textTheme.headlineSmall,
             ),
+      alignment: Alignment.centerLeft,
     );
   }
 }

@@ -15,7 +15,7 @@ class DownloadsScreen extends ConsumerWidget {
 
     return BaseScaffold(
       body: AsyncValueWidget(
-        value: asyncTorrents,
+        asyncTorrents,
         data: (_, torrents) => DownloadListView(
           torrents: torrents,
           delete: (torrent) => _deleteTorrent(ref, torrent),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:real_downloader/src/features/account/presentation/user_container.dart';
-import 'package:real_downloader/src/features/settings/presentation/account_settings/account_settings_dialog.dart';
+import 'package:real_downloader/src/features/account/presentation/settings/account_settings_dialog.dart';
 import 'package:real_downloader/src/l10n/localizations.dart';
 import 'package:real_downloader/src/style.dart';
 import 'package:real_downloader/src/widgets/settings_section.dart';
@@ -12,8 +12,8 @@ class AccountSettingsSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SettingsSection(
-      titleText: context.loc.account,
-      child: Row(
+      title: Text(context.loc.account),
+      content: Row(
         children: [
           const Expanded(
             child: UserContainer(),

@@ -3,25 +3,28 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:real_downloader/src/widgets/info_indicator.dart';
 
 class AsyncValueWidget<T> extends StatelessWidget {
-  const AsyncValueWidget({
+  const AsyncValueWidget(
+    this.value, {
     super.key,
-    required this.value,
     required this.data,
     this.error,
     this.loading,
+    this.alignment = Alignment.center,
   });
 
   final AsyncValue<T> value;
   final Widget Function(BuildContext context, T data) data;
   final Widget Function(BuildContext context, Object error, StackTrace stackTrace)? error;
   final Widget Function(BuildContext context)? loading;
+  final Alignment alignment;
 
   @override
   Widget build(BuildContext context) {
     return switch (value) {
       AsyncData(:final value) => data(context, value),
       AsyncError(:final error, :final stackTrace) => this.error?.call(context, error, stackTrace) ?? //
-          Center(
+          Align(
+            alignment: alignment,
             child: ErrorIndicator(
               error: error,
             ),

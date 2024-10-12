@@ -5,12 +5,14 @@ import 'package:real_downloader/src/widgets/card.dart';
 class SettingsSection extends StatelessWidget {
   const SettingsSection({
     super.key,
-    this.titleText,
-    required this.child,
+    this.contentPadding = const EdgeInsets.symmetric(horizontal: Insets.p18, vertical: Insets.p12),
+    this.title,
+    required this.content,
   });
 
-  final String? titleText;
-  final Widget child;
+  final EdgeInsets contentPadding;
+  final Widget? title;
+  final Widget content;
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +20,17 @@ class SettingsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (titleText != null) ...[
+        if (title != null) ...[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Text(titleText!),
+            child: title,
           ),
           const SizedBox(height: 10),
         ],
         OutlinedCard(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: Insets.p18, vertical: Insets.p12),
-            child: child,
+            padding: contentPadding,
+            child: content,
           ),
         )
       ],

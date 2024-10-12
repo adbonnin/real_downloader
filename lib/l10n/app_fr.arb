@@ -9,6 +9,8 @@
   "signIn": "S'authentifier",
   "apiPrivateToken": "Jeton d'API privé",
   "apiPrivateTokenInfo": "Vous pouvez copier votre jeton privé depuis [ici]({link})",
+  "directory_watcher_title": "Scan de dossiers",
+  "directory_watcher_addButton": "Ajouter un nouveau dossier",
   "downloads_empty": "Aucun téléchargement",
   "downloads_downloading":"{bytes} sur {totalBytes} ({progress}%)",
   "downloads_downloaded":"{bytes} ({progress}%)",

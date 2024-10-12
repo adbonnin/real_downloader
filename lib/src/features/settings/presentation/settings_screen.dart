@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:real_downloader/src/features/settings/presentation/account_settings/account_settings_section.dart';
+import 'package:real_downloader/src/features/account/presentation/settings/account_settings_section.dart';
+import 'package:real_downloader/src/features/directory_watchers/presentation/settings/directory_watcher_settings_section.dart';
 import 'package:real_downloader/src/router/base_scaffold.dart';
 import 'package:real_downloader/src/style.dart';
 
@@ -20,6 +21,8 @@ class SettingsScreen extends StatelessWidget {
               children: [
                 Gaps.p24,
                 AccountSettingsSection(),
+                Gaps.p24,
+                DirectoryWatcherSettingsSection(),
               ],
             ),
           ),

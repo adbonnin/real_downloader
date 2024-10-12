@@ -5,13 +5,14 @@ import 'package:real_downloader/src/features/dashboard/presentation/dashboard_sc
 import 'package:real_downloader/src/features/downloads/presentation/downloads_screen.dart';
 import 'package:real_downloader/src/features/settings/presentation/settings_screen.dart';
 import 'package:real_downloader/src/router/shell_scaffold.dart';
+import 'package:real_downloader/src/utils/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'router.g.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
-@Riverpod(keepAlive: true)
+@service
 GoRouter router(RouterRef ref) {
   return AppRouter(ref).buildRouter();
 }

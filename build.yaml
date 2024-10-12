@@ -1,11 +1,9 @@
 targets:
   $default:
     builders:
-      go_router_builder:
-        generate_for:
-          - "lib/src/router/router.dart"
       riverpod_generator:
         generate_for:
           - "**/application/**.dart"
+          - "**/data/**.dart"
           - "lib/src/router/router.dart"
           - "lib/src/utils/shared_preferences.dart"
