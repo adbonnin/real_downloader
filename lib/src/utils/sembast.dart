@@ -42,23 +42,41 @@ sealed class MapStore<K, T> {
     }
   }
 
+  Future<T?> update(DatabaseClient databaseClient, T object) async {
+    final value = toJson(object);
+    final key = value['id'];
+
+    final record = store.record(key);
+    final result = await record.update(databaseClient, value);
+    return result == null ? null : _fromRecord(key, result);
+  }
+
+  Future<K?> delete(DatabaseClient databaseClient, K key) async {
+    final record = store.record(key);
+    return record.delete(databaseClient);
+  }
+
   Stream<List<T>> query(Database database, {Finder? finder}) {
     return store //
         .query(finder: finder)
         .onSnapshots(database)
-        .map(_fromRecords);
+        .map(_fromRecordSnapshots);
   }
 
   Future<List<T>> find(DatabaseClient databaseClient, {Finder? finder}) async {
     final records = await store.find(databaseClient, finder: finder);
-    return _fromRecords(records);
+    return _fromRecordSnapshots(records);
   }
 
-  List<T> _fromRecords(Iterable<RecordSnapshot<K, Map<String, dynamic>>> records) {
-    return records.map(_fromRecord).toList(growable: false);
+  List<T> _fromRecordSnapshots(Iterable<RecordSnapshot<K, Map<String, dynamic>>> records) {
+    return records.map(_fromRecordSnapshot).toList(growable: false);
   }
 
-  T _fromRecord(RecordSnapshot<K, Map<String, dynamic>> record) {
-    return fromJson({'id': record.key, ...record.value});
+  T _fromRecordSnapshot(RecordSnapshot<K, Map<String, dynamic>> record) {
+    return _fromRecord(record.key, record.value);
+  }
+
+  T _fromRecord(K key, Map<String, dynamic> value) {
+    return fromJson({'id': key, ...value});
   }
 }

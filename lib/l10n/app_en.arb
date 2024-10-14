@@ -18,6 +18,11 @@
   },
   "directory_watcher_title": "Directory watcher",
   "directory_watcher_addButton": "Add a new folder",
+  "directory_watcher_settings_title": "Directory watcher",
+  "directory_watcher_settings_addFolderButton": "Add a folder",
+  "directory_watcher_settings_editFolderButton": "Edit a folder",
+  "directory_watcher_settings_directoryLabel": "Folder to scan",
+  "directory_watcher_settings_emptyDirectoryError": "A folder must be selected",
   "downloads_empty": "Aucun téléchargement",
   "downloads_downloading":"{bytes} of {totalBytes} ({progress}%)",
   "@downloads_downloading": {

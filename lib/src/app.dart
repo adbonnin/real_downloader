@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:real_downloader/src/features/directory_watchers/application/directory_watcher_manager.dart';
+import 'package:real_downloader/src/features/downloads/application/torrent_providers.dart';
 import 'package:real_downloader/src/router/router.dart';
 import 'package:real_downloader/src/theme.dart';
 
@@ -35,6 +36,7 @@ class _EagerInitialization extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(directoryWatcherManagerProvider);
+    ref.watch(torrentsNotifierProvider);
     return child;
   }
 }

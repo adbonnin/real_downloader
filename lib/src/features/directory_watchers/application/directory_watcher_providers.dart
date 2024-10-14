@@ -9,3 +9,8 @@ part 'directory_watcher_providers.g.dart';
 Stream<List<DirectoryWatcher>> directoryWatchers(DirectoryWatchersRef ref) {
   return ref.watch(directoryWatcherRepositoryProvider).query();
 }
+
+@service
+Stream<List<DirectoryWatcher>> enabledDirectoryWatchers(EnabledDirectoryWatchersRef ref) {
+  return ref.watch(directoryWatcherRepositoryProvider).queryEnabled();
+}

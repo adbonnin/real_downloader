@@ -16,21 +16,40 @@ DirectoryWatcherRepository directoryWatcherRepository(DirectoryWatcherRepository
 }
 
 class DirectoryWatcherRepository {
-  const DirectoryWatcherRepository(this.db, this.store);
+  const DirectoryWatcherRepository(this.databaseClient, this.store);
 
-  final Database db;
+  final Database databaseClient;
   final DirectoryWatcherStore store;
 
   Future<String> generateKey() {
-    return store.generateKey(db);
+    return store.generateKey(databaseClient);
   }
 
   Stream<List<DirectoryWatcher>> query() {
-    return store.query(db);
+    return store.query(databaseClient);
+  }
+
+  Stream<List<DirectoryWatcher>> queryEnabled() {
+    final finder = Finder(
+      filter: Filter.equals('enabled', true),
+    );
+
+    return store.query(
+      databaseClient,
+      finder: finder,
+    );
   }
 
   Future<String?> add(DirectoryWatcher dir) {
-    return store.add(db, dir);
+    return store.add(databaseClient, dir);
+  }
+
+  Future<DirectoryWatcher?> update(DirectoryWatcher dir) {
+    return store.update(databaseClient, dir);
+  }
+
+  Future<String?> deleteByKey(String key) {
+    return store.delete(databaseClient, key);
   }
 }
 

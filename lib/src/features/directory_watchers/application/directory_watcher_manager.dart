@@ -9,7 +9,7 @@ part 'directory_watcher_manager.g.dart';
 @service
 DirectoryWatcherManager directoryWatcherManager(DirectoryWatcherManagerRef ref) {
   const manager = DirectoryWatcherManager();
-  ref.listen(directoryWatchersProvider, manager._handleUpdate, fireImmediately: true);
+  ref.listen(enabledDirectoryWatchersProvider, manager._handleUpdate, fireImmediately: true);
 
   return manager;
 }
