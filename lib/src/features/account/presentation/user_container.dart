@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:real_downloader/src/features/account/application/account_providers.dart';
-import 'package:real_downloader/src/l10n/localizations.dart';
 import 'package:real_downloader/src/widgets/async_value_widget.dart';
 
 class UserContainer extends ConsumerWidget {
@@ -14,12 +13,10 @@ class UserContainer extends ConsumerWidget {
 
     return AsyncValueWidget(
       asyncUser,
-      data: (_, user) => user == null //
-          ? Text(context.loc.youAreDisconnected)
-          : Text(
-              user.username,
-              style: theme.textTheme.headlineSmall,
-            ),
+      data: (_, user) => Text(
+        user.username,
+        style: theme.textTheme.headlineSmall,
+      ),
       alignment: Alignment.centerLeft,
     );
   }
