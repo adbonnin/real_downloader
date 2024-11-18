@@ -2,14 +2,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 const service = Riverpod(keepAlive: true);
 
-Provider<T> mustOverrideProvider<T>() {
-  return Provider<T>((_) => throw ProviderNotOverriddenException());
+Provider<T> mustBeOverriddenProvider<T>() {
+  return Provider<T>((_) => throw ProviderMustBeOverriddenException());
 }
 
-class ProviderNotOverriddenException implements Exception {
-  @override
-  String toString() {
-    return 'The value for this provider must be set by an override on ProviderScope at runtime, '
-        'usually when the application is first started.';
-  }
+class ProviderMustBeOverriddenException extends UnimplementedError {
+  ProviderMustBeOverriddenException() : super('Provider must be overridden in the container initialization');
 }

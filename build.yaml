@@ -7,3 +7,4 @@ targets:
           - "**/data/**.dart"
           - "lib/src/router/router.dart"
           - "lib/src/utils/shared_preferences.dart"
+          - "lib/src/persistence/persistence.dart"

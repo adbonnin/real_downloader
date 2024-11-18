@@ -54,7 +54,7 @@ class DirectoryWatcherRepository {
   }
 }
 
-class DirectoryWatcherStore extends StringMapStore<DirectoryWatcher> {
+class DirectoryWatcherStore extends StringStore<DirectoryWatcher> {
   const DirectoryWatcherStore(super.store);
 
   factory DirectoryWatcherStore.store(String name) {
