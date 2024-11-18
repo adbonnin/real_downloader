@@ -5,6 +5,7 @@ import 'package:real_downloader/src/features/directory_watchers/data/directory_w
 import 'package:real_downloader/src/features/directory_watchers/model/directory_watcher.dart';
 import 'package:real_downloader/src/features/directory_watchers/presentation/settings/directory_watcher_settings_form.dart';
 import 'package:real_downloader/src/l10n/localizations.dart';
+import 'package:real_downloader/src/style.dart';
 
 Future<DirectoryWatcher?> showDirectoryWatcherSettingsDialog({
   required BuildContext context,
@@ -49,9 +50,15 @@ class _DirectoryWatcherSettingsDialogState extends ConsumerState<DirectoryWatche
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(context.loc.directory_watcher_settings_title),
-      content: DirectoryWatcherSettingsForm(
-        key: _formKey,
-        initialDirectory: widget.initialDirectoryWatcher?.directory,
+      content: Container(
+        width: double.maxFinite,
+        constraints: DialogConstraints.dialog,
+        child: SingleChildScrollView(
+          child: DirectoryWatcherSettingsForm(
+            key: _formKey,
+            initialDirectory: widget.initialDirectoryWatcher?.directory,
+          ),
+        ),
       ),
       actions: [
         OutlinedButton(

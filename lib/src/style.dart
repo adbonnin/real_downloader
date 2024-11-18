@@ -39,13 +39,11 @@ class DialogConstraints {
 
   static const dialog = BoxConstraints(
     maxWidth: 800,
-    minWidth: 600,
     maxHeight: 600,
   );
 
   static const picker = BoxConstraints(
     maxWidth: 480,
-    minWidth: 480,
     maxHeight: 320,
   );
 }
