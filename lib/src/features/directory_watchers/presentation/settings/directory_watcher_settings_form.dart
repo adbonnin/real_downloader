@@ -50,8 +50,7 @@ class DirectoryWatcherSettingsFormState extends State<DirectoryWatcherSettingsFo
             decoration: InputDecoration(
               label: Text(context.loc.directory_watcher_settings_directoryLabel),
               suffixIcon: DirectoryPickerIconButton(
-                directory: () => _directoryController.text,
-                onValueChanged: _onPickFile,
+                controller: _directoryController,
               ),
             ),
           )
@@ -68,11 +67,5 @@ class DirectoryWatcherSettingsFormState extends State<DirectoryWatcherSettingsFo
     return DirectoryWatcherSettingsFormData(
       directory: _directoryController.text,
     );
-  }
-
-  void _onPickFile(String? directory) {
-    if (directory != null) {
-      _directoryController.text = directory;
-    }
   }
 }

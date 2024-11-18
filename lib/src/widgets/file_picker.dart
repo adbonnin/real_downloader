@@ -10,14 +10,12 @@ class DirectoryPickerIconButton extends StatefulWidget {
     super.key,
     this.dialogTitle,
     this.lockParentWindow = false,
-    this.directory,
-    this.onValueChanged,
+    required this.controller,
   });
 
   final String? dialogTitle;
   final bool lockParentWindow;
-  final String? Function()? directory;
-  final ValueChanged<String?>? onValueChanged;
+  final TextEditingController controller;
 
   @override
   State<DirectoryPickerIconButton> createState() => _DirectoryPickerIconButtonState();
@@ -33,7 +31,7 @@ class _DirectoryPickerIconButtonState extends State<DirectoryPickerIconButton> {
   }
 
   Future<void> _onPickFile() async {
-    var path = widget.directory?.call()?.blankToNull;
+    var path = widget.controller.text.blankToNull;
     var dir = path == null ? null : (await Directory(path).findExists());
 
     final result = await FilePicker.platform.getDirectoryPath(
@@ -42,10 +40,12 @@ class _DirectoryPickerIconButtonState extends State<DirectoryPickerIconButton> {
       initialDirectory: dir?.path,
     );
 
-    if (!mounted) {
+    if (result == null) {
       return;
     }
 
-    widget.onValueChanged?.call(result);
+    if (mounted) {
+      widget.controller.text = result;
+    }
   }
 }
