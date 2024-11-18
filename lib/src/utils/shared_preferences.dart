@@ -1,10 +1,11 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'shared_preferences.g.dart';
 
 @Riverpod(keepAlive: true)
-SharedPreferences prefs(PrefsRef ref) {
+SharedPreferences prefs(Ref ref) {
   throw UnimplementedError();
 }
 

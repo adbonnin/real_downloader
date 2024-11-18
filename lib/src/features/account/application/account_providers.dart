@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:real_downloader/src/utils/shared_preferences.dart';
 import 'package:realdebrid_api/realdebrid_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -40,13 +41,13 @@ class ApiClientNotifier extends _$ApiClientNotifier {
 }
 
 @Riverpod(keepAlive: true)
-RealDebridApi realDebridApi(RealDebridApiRef ref) {
+RealDebridApi realDebridApi(Ref ref) {
   final client = ref.watch(apiClientNotifierProvider);
   return RealDebridApi(client);
 }
 
 @riverpod
-Future<User> user(UserRef ref) {
+Future<User> user(Ref ref) {
   final api = ref.watch(realDebridApiProvider);
   return api.user.getUser();
 }

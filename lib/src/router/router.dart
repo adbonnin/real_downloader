@@ -13,7 +13,7 @@ part 'router.g.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
 @service
-GoRouter router(RouterRef ref) {
+GoRouter router(Ref ref) {
   return AppRouter(ref).buildRouter();
 }
 

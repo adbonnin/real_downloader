@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:real_downloader/src/features/directory_watchers/model/directory_watcher.dart';
 import 'package:real_downloader/src/persistence/persistence.dart';
 import 'package:real_downloader/src/utils/riverpod.dart';
@@ -8,7 +9,7 @@ import 'package:sembast/sembast.dart';
 part 'directory_watcher_repository.g.dart';
 
 @service
-DirectoryWatcherRepository directoryWatcherRepository(DirectoryWatcherRepositoryRef ref) {
+DirectoryWatcherRepository directoryWatcherRepository(Ref ref) {
   final db = ref.watch(databaseProvider);
   final store = DirectoryWatcherStore.store("directory_watcher");
 

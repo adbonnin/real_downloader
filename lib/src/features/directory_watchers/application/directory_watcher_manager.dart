@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:real_downloader/src/features/directory_watchers/application/directory_watcher_providers.dart';
 import 'package:real_downloader/src/features/directory_watchers/model/directory_watcher.dart';
 import 'package:real_downloader/src/utils/iterable.dart';
@@ -7,7 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'directory_watcher_manager.g.dart';
 
 @service
-DirectoryWatcherManager directoryWatcherManager(DirectoryWatcherManagerRef ref) {
+DirectoryWatcherManager directoryWatcherManager(Ref ref) {
   const manager = DirectoryWatcherManager();
   ref.listen(enabledDirectoryWatchersProvider, manager._handleUpdate, fireImmediately: true);
 
