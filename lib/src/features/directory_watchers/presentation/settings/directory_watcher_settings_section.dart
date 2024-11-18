@@ -73,7 +73,12 @@ class _DirectoryWatcherSettingsSectionState extends ConsumerState<DirectoryWatch
       return;
     }
 
-    repo.update(result);
+    if (value == null) {
+      repo.add(result);
+    } //
+    else {
+      repo.update(result);
+    }
   }
 
   void _onValueChanged(DirectoryWatcher value) {
